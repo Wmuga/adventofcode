@@ -15,6 +15,10 @@ def get_neighbours(cur:tuple[int,int], max:tuple[int,int]):
 
 	return n
 
+def manhattan_distance(point1:tuple[int,int],point2:tuple[int,int]):
+	return abs(point1[0]-point2[0]) + abs(point1[1]-point2[1])
+
+
 def Dijkstra(start:tuple[int,int], end:tuple[int,int], map:list[list[int]]):
 	nodes_from = {} # not needed
 	costs = {}
@@ -27,6 +31,9 @@ def Dijkstra(start:tuple[int,int], end:tuple[int,int], map:list[list[int]]):
 	while not paths.empty():
 		cur = paths.get()
 
+		if cur == end:
+			continue
+
 		neighbours = [n for n in get_neighbours(cur, max_coord) if map[n[0]][n[1]] - map[cur[0]][cur[1]] <= 1]
 
 		for next in neighbours:
@@ -34,7 +41,7 @@ def Dijkstra(start:tuple[int,int], end:tuple[int,int], map:list[list[int]]):
 
 			if not (next in costs) or costs[next] > new_cost:
 				costs[next] = new_cost
-				paths.put(next, new_cost)
+				paths.put(next, new_cost + manhattan_distance(next, end))
 				nodes_from[next] = cur
 
 	return costs[end] if end in costs else 999999 
