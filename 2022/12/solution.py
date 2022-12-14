@@ -25,14 +25,14 @@ def Dijkstra(start:tuple[int,int], end:tuple[int,int], map:list[list[int]]):
 	nodes_from[start] = None 
 	costs[start] = 0
 	paths = PriorityQueue()
-	paths.put(start, 0)
+	paths.put((0,start))
 	max_coord = (len(map),len(map[0]))
 	
 	while not paths.empty():
-		cur = paths.get()
+		_, cur = paths.get()
 
 		if cur == end:
-			continue
+			break
 
 		neighbours = [n for n in get_neighbours(cur, max_coord) if map[n[0]][n[1]] - map[cur[0]][cur[1]] <= 1]
 
@@ -41,7 +41,7 @@ def Dijkstra(start:tuple[int,int], end:tuple[int,int], map:list[list[int]]):
 
 			if not (next in costs) or costs[next] > new_cost:
 				costs[next] = new_cost
-				paths.put(next, new_cost + manhattan_distance(next, end))
+				paths.put((new_cost + manhattan_distance(next, end),next))
 				nodes_from[next] = cur
 
 	return costs[end] if end in costs else 999999 
