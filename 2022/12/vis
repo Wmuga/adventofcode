@@ -1,0 +1,135 @@
+import re 
+from queue import PriorityQueue
+import pygame
+from itertools import product
+
+PIXEL_SIZE = 7
+TEXT_OFFSET = (10,10)
+FIELD_OFFSET = 40
+
+COLOR_HEIGHT_MIN = (0x89,0xe5,0x4f)
+COLOR_HEIGHT_MAX = (0x8b,0x4e,0x18)
+COLOR_ADD = tuple([(a-b)/26 for a,b in zip(COLOR_HEIGHT_MAX,COLOR_HEIGHT_MIN)])
+
+def get_neighbours(cur:tuple[int,int], max:tuple[int,int]):
+	n = []
+	if cur[0]+1 != max[0]:
+		n.append((cur[0]+1, cur[1]))
+	if cur[1]+1 != max[1]:
+		n.append((cur[0], cur[1]+1))
+	if cur[0] != 0:
+		n.append((cur[0]-1, cur[1]))
+	if cur[1] != 0:
+		n.append((cur[0], cur[1]-1))
+	return n
+
+def manhattan_distance(point1:tuple[int,int],point2:tuple[int,int]):
+	return abs(point1[0]-point2[0]) + abs(point1[1]-point2[1])
+
+def Dijkstra(start:tuple[int,int], end:tuple[int,int], map:list[list[int]]):
+	backtrack = {} 
+	costs = {}
+	backtrack[start] = None 
+	costs[start] = 0
+	paths = PriorityQueue()
+	paths.put((0,start))
+	max_coord = (len(map),len(map[0]))
+	
+	while not paths.empty():
+		_, cur = paths.get()
+
+		if cur == end:
+			continue
+
+		neighbours = [n for n in get_neighbours(cur, max_coord) if map[n[0]][n[1]] - map[cur[0]][cur[1]] <= 1]
+
+		for next in neighbours:
+			new_cost = costs[cur] + 1
+
+			if not (next in costs) or costs[next] > new_cost:
+				costs[next] = new_cost
+				paths.put((new_cost + manhattan_distance(next, end),next))
+				backtrack[next] = cur
+
+	return costs[end] if end in costs else 999999, backtrack
+
+def read_input(file:str):
+	lines = re.split('\r?\n',open(file).read())
+	start, end = [0,0], [0,0]
+	for i in range(len(lines)):
+		line = list(lines[i])
+		for j in range(len(line)):
+			sym = line[j]
+			if sym == 'S':
+				line[j] = 0
+				start = (i,j)
+			elif sym == 'E':
+				line[j] = 25
+				end = (i,j)
+			else:
+				line[j] = ord(sym) - ord('a')
+		lines[i] = line
+	return start, end, lines
+
+def create_path(backtrack:dict,key:tuple):
+  if backtrack[key] == None:
+    return [key]
+  return create_path(backtrack,backtrack[key]) + [key]
+
+def draw_field(screen, map,start,end):
+  for i,j in product(range(len(map[0])),range(len(map))):
+    pix = (j,i)
+    color = tuple([int(a + b * map[j][i]) for a,b in zip(COLOR_HEIGHT_MIN,COLOR_ADD)]) if pix != start and pix != end else ((0xd5,0x22,0x22) if pix == end else (0x22,0x33,0xd5))
+    draw_pixel(screen,(i,j),color)
+
+def draw_pixel(screen,pix,color,size=PIXEL_SIZE):
+  X = pix[0]*PIXEL_SIZE + (PIXEL_SIZE-size)//2
+  Y = pix[1]*PIXEL_SIZE + (PIXEL_SIZE-size)//2 + FIELD_OFFSET
+  pygame.draw.rect(screen,color,(X,Y,size,size))
+
+def main(): 
+  start, end, map = read_input(r'.\2022\12\input.txt')  
+  
+  pygame.init()
+  screen = pygame.display.set_mode((len(map[0])*PIXEL_SIZE, len(map)*PIXEL_SIZE + FIELD_OFFSET))
+  pygame.display.set_caption("Day 12 Part 1")
+  clock = pygame.time.Clock()
+  running = True
+
+  font = pygame.font.SysFont('Times New Roman',14)
+
+  text = font.render('Generating path',True,(255,255,255))
+  screen.blit(text,TEXT_OFFSET)
+  draw_field(screen,map,start,end)
+  pygame.display.update()
+
+  res, backtrack = Dijkstra(start,end,map)
+  path = create_path(backtrack, end)
+
+  screen.fill((0,0,0))
+  
+  i = len(path)
+  while running:
+    clock.tick(30)
+    # Reset
+    if i == len(path):
+      text = font.render(f'Path length: {res}',True,(255,255,255))
+      screen.blit(text,TEXT_OFFSET)
+      draw_field(screen,map,start,end)
+      pygame.display.update()
+      i = 0
+    # events 
+    for event in pygame.event.get():
+      if event.type == pygame.QUIT: 
+        running = False
+    # Draw
+    pix = path[i]
+    pix = pix[1],pix[0]
+    draw_pixel(screen,pix,(20,20,20), 5)
+    i += 1
+    pygame.display.update()
+    if i == len(path):
+      pygame.time.wait(2000)
+
+if __name__ == '__main__': 
+	main() 
