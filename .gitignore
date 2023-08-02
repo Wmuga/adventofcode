@@ -2,3 +2,6 @@
 **/*.jpg
 **/tempCodeRunnerFile.*
 **/test.*
+**/bin/
+**/obj/
+**/.vs
