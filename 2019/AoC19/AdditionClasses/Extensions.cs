@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,5 +29,14 @@ namespace AoC19.AdditionClasses
             }
             return ints;
         }
+
+       public static void AddTo<TKey, T>(this Dictionary<TKey, List<T>> dict, TKey key, T value) where TKey: notnull
+       {
+            if (!dict.ContainsKey(key))
+            {
+                dict[key] = new();
+            }
+            dict[key].Add(value);
+       }
     }
 }

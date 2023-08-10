@@ -17,7 +17,7 @@ namespace AoC19
 		
 		static void Main(string[] args)
 		{
-			SolveDay<Day9>(9);
+			SolveDay<Day11>(11);
 		}
 
 		public static void SolveDay<T>(int day) where T : IAoCDay
