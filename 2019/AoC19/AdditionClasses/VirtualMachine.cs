@@ -20,6 +20,10 @@ namespace AoC19.AdditionClasses
 
 		private long relativeBase = 0;
 		private bool useExtendedMemory = false;
+		
+		private int pos = 0;
+		private bool firstInput = false;
+
 
 		public VirtualMachine(List<int> opcodes)
 		{
@@ -32,9 +36,9 @@ namespace AoC19.AdditionClasses
 			SetStandartIntructions();
 		}
 
-		public int Eval()
+		public int Eval(bool terminateNextInput = false)
 		{
-			int pos = 0;
+			firstInput = true;
 			while (pos != -1)
 			{
 				long opcode = opcodes[pos];
@@ -43,6 +47,18 @@ namespace AoC19.AdditionClasses
 					Console.WriteLine("No opcode {0}", testOpcode);
 					pos = -1;
 					continue;
+				}
+
+				if (terminateNextInput && opcode == 3)
+				{
+					if (firstInput)
+					{
+						firstInput = false;
+					}
+					else
+					{
+						return pos;
+					}
 				}
 
 				pos = _evaluators[testOpcode]((int)(opcode/100), pos);

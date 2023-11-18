@@ -38,5 +38,35 @@ namespace AoC19.AdditionClasses
             }
             dict[key].Add(value);
        }
-    }
+
+        public static float ManhLength(this Vector3 val)
+        {
+            return Math.Abs(val.X)+Math.Abs(val.Y)+Math.Abs(val.Z);
+        }
+
+		public static long GCD(long l, long r)
+		{
+			while (l != 0 && r != 0)
+			{
+				if (l > r)
+				{
+					l %= r;
+					continue;
+				}
+				r %= l;
+			}
+			return l + r;
+		}
+
+        public static long LCD(long l, long r)
+        {
+            return (l * r) / GCD(l, r);
+        }
+
+
+        public static T FromInt<T>(int val) where T : Enum
+        {
+            return (T)Enum.ToObject(typeof(T), val);
+        }
+	}
 }
