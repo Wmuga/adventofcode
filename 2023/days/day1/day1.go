@@ -1,6 +1,7 @@
 package day1
 
 import (
+	aoc "aoc2023/days/aocday"
 	"fmt"
 	"strconv"
 	"strings"
@@ -23,7 +24,7 @@ var strToNumbers = map[string]string{
 	"nine":  "n9e",
 }
 
-func New(input string) *Day1 {
+func New(input string) aoc.AoCDay {
 	lines := strings.Split(input, "\n")
 	return &Day1{
 		inputLines: lines,
