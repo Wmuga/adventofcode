@@ -8,7 +8,7 @@ import (
 	"unicode"
 )
 
-type Day1 struct {
+type day1 struct {
 	inputLines []string
 }
 
@@ -26,12 +26,12 @@ var strToNumbers = map[string]string{
 
 func New(input string) aoc.AoCDay {
 	lines := strings.Split(input, "\n")
-	return &Day1{
+	return &day1{
 		inputLines: lines,
 	}
 }
 
-func (d *Day1) baseSolver(deb bool, filter func([]string) []string) int {
+func (d *day1) baseSolver(deb bool, filter func([]string) []string) int {
 	out := 0
 	filtered := filter(d.inputLines)
 	for _, line := range filtered {
@@ -56,12 +56,12 @@ func (d *Day1) baseSolver(deb bool, filter func([]string) []string) int {
 	return out
 }
 
-func (d *Day1) SolveA(deb bool) {
+func (d *day1) SolveA(deb bool) {
 	out := d.baseSolver(deb, filterNumbersA)
 	fmt.Println("Solution A:", out)
 }
 
-func (d *Day1) SolveB(deb bool) {
+func (d *day1) SolveB(deb bool) {
 	out := d.baseSolver(deb, filterNumbersB)
 	fmt.Println("Solution B:", out)
 }

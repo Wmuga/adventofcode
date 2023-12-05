@@ -13,7 +13,7 @@ type bundle struct {
 	blue  int
 }
 
-type Day2 struct {
+type day2 struct {
 	games [][]*bundle
 }
 
@@ -36,7 +36,7 @@ func New(inp string) aoc.AoCDay {
 		gameInfo := strings.Split(v, ": ")
 		parsed = append(parsed, gameInfo[1])
 	}
-	return &Day2{
+	return &day2{
 		games: parseGames(parsed),
 	}
 }
@@ -52,7 +52,7 @@ func getGameMax(game []*bundle) bundle {
 	return gameMax
 }
 
-func (d *Day2) SolveA(deb bool) {
+func (d *day2) SolveA(deb bool) {
 	out := 0
 	for i, game := range d.games {
 		gameMax := getGameMax(game)
@@ -70,7 +70,7 @@ func (d *Day2) SolveA(deb bool) {
 	fmt.Println("Solution A:", out)
 }
 
-func (d *Day2) SolveB(deb bool) {
+func (d *day2) SolveB(deb bool) {
 	var out int64 = 0
 	for i, game := range d.games {
 		gameMax := getGameMax(game)
