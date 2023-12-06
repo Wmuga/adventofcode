@@ -39,7 +39,7 @@ func New(inp string) aoc.AoCDay {
 	return day
 }
 
-func (d *day3) SolveA(deb bool) {
+func (d *day3) SolveA(deb bool) interface{} {
 	out := 0
 	for _, num := range d.numbers {
 		if d.hasAdjacent(num) {
@@ -51,8 +51,9 @@ func (d *day3) SolveA(deb bool) {
 		}
 	}
 	fmt.Println("Solution A:", out)
+	return out
 }
-func (d *day3) SolveB(deb bool) {
+func (d *day3) SolveB(deb bool) interface{} {
 	out := 0
 	for coord, adj := range d.stars {
 		if len(adj) != 2 {
@@ -65,6 +66,7 @@ func (d *day3) SolveB(deb bool) {
 		out += rat
 	}
 	fmt.Println("Solution B:", out)
+	return out
 }
 
 func (d *day3) extractFromLine(y int, line string) {

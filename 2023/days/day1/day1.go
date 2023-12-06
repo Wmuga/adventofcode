@@ -56,14 +56,16 @@ func (d *day1) baseSolver(deb bool, filter func([]string) []string) int {
 	return out
 }
 
-func (d *day1) SolveA(deb bool) {
+func (d *day1) SolveA(deb bool) interface{} {
 	out := d.baseSolver(deb, filterNumbersA)
 	fmt.Println("Solution A:", out)
+	return out
 }
 
-func (d *day1) SolveB(deb bool) {
+func (d *day1) SolveB(deb bool) interface{} {
 	out := d.baseSolver(deb, filterNumbersB)
 	fmt.Println("Solution B:", out)
+	return out
 }
 
 func filterNumbersA(inp []string) []string {

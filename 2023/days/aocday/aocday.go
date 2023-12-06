@@ -1,6 +1,6 @@
 package aocday
 
 type AoCDay interface {
-	SolveA(bool)
-	SolveB(bool)
+	SolveA(bool) interface{}
+	SolveB(bool) interface{}
 }
