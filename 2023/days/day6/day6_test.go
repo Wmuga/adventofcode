@@ -32,6 +32,6 @@ func TestB(t *testing.T) {
 	day := New(inp1)
 	res := day.SolveB(true)
 	if res.(int) != 71503 {
-		t.Error("Result", res, "is not equal to", 46, "\n")
+		t.Error("Result", res, "is not equal to", 71503, "\n")
 	}
 }
