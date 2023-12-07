@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-var reg = regexp.MustCompile("\\d+")
+var reg = regexp.MustCompile(`\d+`)
 
 func ExtractNums(inp string) []int {
 	digs := reg.FindAllString(inp, -1)
