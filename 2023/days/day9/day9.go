@@ -83,6 +83,6 @@ func (d *day9) SolveB(deb bool) interface{} {
 	for _, line := range d.nums {
 		out += analyzeLine(line, false, deb)
 	}
-	fmt.Println("Solution A:", out)
+	fmt.Println("Solution B:", out)
 	return out
 }
