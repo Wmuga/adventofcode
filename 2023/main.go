@@ -1,7 +1,7 @@
 package main
 
 import (
-	"aoc2023/days/day10"
+	"aoc2023/days/day11"
 	"aoc2023/utils/inputs"
 	"fmt"
 	"log"
@@ -14,13 +14,13 @@ func main() {
 		log.Fatalln("Can't load env")
 	}
 
-	inpActual, err := inputs.Day(10)
+	inpActual, err := inputs.Day(11)
 	if err != nil {
 		log.Fatalln(err)
 	}
 	// Tests moved to _test.go files
 	fmt.Println("Actual data:")
-	curDay := day10.New(inpActual)
+	curDay := day11.New(inpActual)
 	curDay.SolveA(false)
 	curDay.SolveB(false)
 }
