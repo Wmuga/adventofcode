@@ -3,6 +3,7 @@ package day11
 import (
 	"aoc2023/days/aocday"
 	"aoc2023/entity/pair"
+	"aoc2023/utils/tools"
 	"fmt"
 	"math"
 	"slices"
@@ -67,7 +68,7 @@ func (d *day11) parse(inp string, add int64) {
 		lines = append(lines, []rune(line))
 	}
 
-	linesT := transpose(lines)
+	linesT := tools.Transpose(lines)
 
 	//lines[y][x] = linesT[x][y]
 	var addY int64
@@ -88,15 +89,4 @@ func (d *day11) parse(inp string, add int64) {
 			}
 		}
 	}
-}
-
-func transpose(in [][]rune) [][]rune {
-	out := make([][]rune, len(in[0]))
-	for i := range in[0] {
-		out[i] = make([]rune, len(in))
-		for j := range in {
-			out[i][j] = in[j][i]
-		}
-	}
-	return out
 }
