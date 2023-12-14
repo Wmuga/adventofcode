@@ -30,7 +30,7 @@ func New(inp string) aoc.AoCDay {
 	return d
 }
 
-func (d *day4) SolveA(_ bool) interface{} {
+func (d *day4) SolveA(_ bool) string {
 	out := 0
 	for _, card := range d.cards {
 		count := intersect(card.winning, card.have)
@@ -40,9 +40,9 @@ func (d *day4) SolveA(_ bool) interface{} {
 		out += int(math.Pow(2.0, float64(count-1)))
 	}
 	fmt.Println("Solution A:", out)
-	return out
+	return strconv.FormatInt(int64(out), 10)
 }
-func (d *day4) SolveB(deb bool) interface{} {
+func (d *day4) SolveB(deb bool) string {
 	cards := make([]int, len(d.cards))
 	for i := range cards {
 		cards[i] = 1
@@ -61,7 +61,7 @@ func (d *day4) SolveB(deb bool) interface{} {
 		out += v
 	}
 	fmt.Println("Solution B:", out)
-	return out
+	return strconv.FormatInt(int64(out), 10)
 }
 
 func parseCard(line string) card {

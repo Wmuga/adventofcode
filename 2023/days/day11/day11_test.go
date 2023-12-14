@@ -20,7 +20,7 @@ const inp1 = `...#......
 
 func TestParse(t *testing.T) {
 	day := New(inp1).(*day11)
-	day.parse(day.inp, 1)
+	day.parse(day.inp, 2)
 	gals := map[coord]struct{}{
 		{X: 4, Y: 0}:  {},
 		{X: 9, Y: 1}:  {},

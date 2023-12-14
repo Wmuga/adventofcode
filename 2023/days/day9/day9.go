@@ -4,6 +4,7 @@ import (
 	"aoc2023/days/aocday"
 	"aoc2023/utils/parsers"
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -70,19 +71,19 @@ func analyzeLine(line []int, forw bool, deb bool) int {
 	return res
 }
 
-func (d *day9) SolveA(deb bool) interface{} {
+func (d *day9) SolveA(deb bool) string {
 	out := 0
 	for _, line := range d.nums {
 		out += analyzeLine(line, true, deb)
 	}
 	fmt.Println("Solution A:", out)
-	return out
+	return strconv.FormatInt(int64(out), 10)
 }
-func (d *day9) SolveB(deb bool) interface{} {
+func (d *day9) SolveB(deb bool) string {
 	out := 0
 	for _, line := range d.nums {
 		out += analyzeLine(line, false, deb)
 	}
 	fmt.Println("Solution B:", out)
-	return out
+	return strconv.FormatInt(int64(out), 10)
 }

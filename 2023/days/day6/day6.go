@@ -34,17 +34,17 @@ func calcCount(time, dist int, deb bool) int {
 	return count
 }
 
-func (d *day6) SolveA(deb bool) interface{} {
+func (d *day6) SolveA(deb bool) string {
 	out := 1
 	for i := range d.times {
 		count := calcCount(d.times[i], d.dists[i], deb)
 		out *= count
 	}
 	fmt.Println("Solution A:", out)
-	return out
+	return strconv.FormatInt(int64(out), 10)
 }
 
-func (d *day6) SolveB(deb bool) interface{} {
+func (d *day6) SolveB(deb bool) string {
 	times := ""
 	dists := ""
 	for _, time := range d.times {
@@ -57,9 +57,9 @@ func (d *day6) SolveB(deb bool) interface{} {
 	dist, err2 := strconv.Atoi(dists)
 	if err != nil || err2 != nil {
 		fmt.Println("Can't convert back", times, "and", dists)
-		return nil
+		return ""
 	}
 	out := calcCount(time, dist, deb)
 	fmt.Println("Solution B:", out)
-	return out
+	return strconv.FormatInt(int64(out), 10)
 }

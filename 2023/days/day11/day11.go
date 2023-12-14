@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"math"
 	"slices"
+	"strconv"
 	"strings"
 
 	"golang.org/x/exp/maps"
@@ -38,16 +39,16 @@ func (d *day11) base(add int64) int64 {
 	return out
 }
 
-func (d *day11) SolveA(_ bool) interface{} {
+func (d *day11) SolveA(_ bool) string {
 	out := d.base(1)
 	fmt.Println("Solution A:", out)
-	return out
+	return strconv.FormatInt(out, 10)
 }
 
-func (d *day11) SolveB(_ bool) interface{} {
+func (d *day11) SolveB(_ bool) string {
 	out := d.base(1000000)
 	fmt.Println("Solution B:", out)
-	return out
+	return strconv.FormatInt(out, 10)
 }
 
 func dist(a, b coord) int64 {

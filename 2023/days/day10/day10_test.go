@@ -1,6 +1,9 @@
 package day10
 
-import "testing"
+import (
+	"strconv"
+	"testing"
+)
 
 const inp1 = `.....
 .S-7.
@@ -59,13 +62,13 @@ L7JLJL-JLJLJL--JLJ.L`
 func TestA(t *testing.T) {
 	day := New(inp1)
 	res := day.SolveA(true)
-	if res.(int) != 4 {
+	if res != "4" {
 		t.Error("Input 1: Expected 4. Got", res)
 	}
 
 	day = New(inp2)
 	res = day.SolveA(true)
-	if res.(int) != 8 {
+	if res != "8" {
 		t.Error("Input 2: Expected 8. Got", res)
 	}
 }
@@ -79,7 +82,7 @@ func TestB(t *testing.T) {
 
 		day := New(inp)
 		res := day.SolveB(true)
-		if res.(int) != exp {
+		if res != strconv.FormatInt(int64(exp), 10) {
 			t.Error(i, "input wrong. Expected", exp, "Got", res)
 		}
 	}
@@ -97,7 +100,7 @@ const inpHorror = `.S---7.
 func TestHorror(t *testing.T) {
 	day := New(inpHorror)
 	res := day.SolveB(true)
-	if res.(int) != 0 {
+	if res != "0" {
 		t.Error("Expected", 0, "Got", res)
 	}
 }

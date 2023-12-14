@@ -5,6 +5,7 @@ import (
 	"aoc2023/utils/tools"
 	"fmt"
 	"slices"
+	"strconv"
 	"strings"
 )
 
@@ -107,14 +108,14 @@ func (d *day13) base(errors int) int64 {
 	return out
 }
 
-func (d *day13) SolveA(_ bool) interface{} {
+func (d *day13) SolveA(_ bool) string {
 	out := d.base(0)
 	fmt.Println("Solution A:", out)
-	return out
+	return strconv.FormatInt(out, 10)
 }
 
-func (d *day13) SolveB(_ bool) interface{} {
+func (d *day13) SolveB(_ bool) string {
 	out := d.base(1)
 	fmt.Println("Solution B:", out)
-	return out
+	return strconv.FormatInt(out, 10)
 }

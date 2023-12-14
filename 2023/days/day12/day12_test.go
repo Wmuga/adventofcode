@@ -42,7 +42,7 @@ func TestParse(t *testing.T) {
 func TestA(t *testing.T) {
 	d := New(inp1)
 	res := d.SolveA(true)
-	if res.(int64) != 21 {
+	if res != "21" {
 		t.Error("Wrong answer. Got", res)
 	}
 }
@@ -50,7 +50,7 @@ func TestA(t *testing.T) {
 func TestB(t *testing.T) {
 	d := New(inp1)
 	res := d.SolveB(true)
-	if res.(int64) != 525152 {
+	if res != "525152" {
 		t.Error("Wrong answer. Got", res)
 	}
 }

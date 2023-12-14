@@ -52,7 +52,7 @@ func getGameMax(game []*bundle) bundle {
 	return gameMax
 }
 
-func (d *day2) SolveA(deb bool) interface{} {
+func (d *day2) SolveA(deb bool) string {
 	out := 0
 	for i, game := range d.games {
 		gameMax := getGameMax(game)
@@ -68,10 +68,10 @@ func (d *day2) SolveA(deb bool) interface{} {
 
 	}
 	fmt.Println("Solution A:", out)
-	return out
+	return strconv.FormatInt(int64(out), 10)
 }
 
-func (d *day2) SolveB(deb bool) interface{} {
+func (d *day2) SolveB(deb bool) string {
 	var out int64 = 0
 	for i, game := range d.games {
 		gameMax := getGameMax(game)
@@ -82,7 +82,7 @@ func (d *day2) SolveB(deb bool) interface{} {
 		out += power
 	}
 	fmt.Println("Solution B:", out)
-	return out
+	return strconv.FormatInt(int64(out), 10)
 }
 
 func parseGames(inp []string) [][]*bundle {

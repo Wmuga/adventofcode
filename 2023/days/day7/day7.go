@@ -47,7 +47,7 @@ func New(inp string) aocday.AoCDay {
 		cards: parseCards(inp),
 	}
 }
-func (d *day7) SolveA(deb bool) interface{} {
+func (d *day7) SolveA(deb bool) string {
 	var out uint64 = 0
 	cards := make(map[hType][]card)
 	for _, c := range d.cards {
@@ -75,9 +75,9 @@ func (d *day7) SolveA(deb bool) interface{} {
 		}
 	}
 	fmt.Println("Solution A:", out)
-	return out
+	return strconv.FormatInt(int64(out), 10)
 }
-func (d *day7) SolveB(deb bool) interface{} {
+func (d *day7) SolveB(deb bool) string {
 	var out uint64 = 0
 	cards := make(map[hType][]card)
 	for _, c := range d.cards {
@@ -107,7 +107,7 @@ func (d *day7) SolveB(deb bool) interface{} {
 		}
 	}
 	fmt.Println("Solution B:", out)
-	return out
+	return strconv.FormatInt(int64(out), 10)
 }
 
 func parseCards(inp string) []card {

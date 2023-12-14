@@ -6,6 +6,7 @@ import (
 	"aoc2023/entity/queue"
 	"fmt"
 	"log"
+	"strconv"
 	"strings"
 )
 
@@ -105,7 +106,7 @@ searchloop:
 	}
 }
 
-func (d *day10) SolveA(_ bool) interface{} {
+func (d *day10) SolveA(_ bool) string {
 	out := 0
 
 	d.setLengths()
@@ -119,10 +120,10 @@ func (d *day10) SolveA(_ bool) interface{} {
 		}
 	}
 	fmt.Println("Solution A:", out)
-	return out
+	return strconv.FormatInt(int64(out), 10)
 }
 
-func (d *day10) SolveB(deb bool) interface{} {
+func (d *day10) SolveB(deb bool) string {
 	d.expandPipes()
 	d.setLengths()
 
@@ -163,7 +164,7 @@ func (d *day10) SolveB(deb bool) interface{} {
 		out += strings.Count(string(line), "I")
 	}
 	fmt.Println("Solution B:", out)
-	return out
+	return strconv.FormatInt(int64(out), 10)
 }
 
 func canGoUp(pipe rune) bool {

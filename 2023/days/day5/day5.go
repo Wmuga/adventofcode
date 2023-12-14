@@ -53,7 +53,7 @@ func (d *day5) convert(v uint, deb bool) uint {
 	return item
 }
 
-func (d *day5) SolveA(deb bool) interface{} {
+func (d *day5) SolveA(deb bool) string {
 	convs := make([]uint, len(d.items))
 	for i, v := range d.items {
 		convs[i] = d.convert(v, deb)
@@ -65,10 +65,10 @@ func (d *day5) SolveA(deb bool) interface{} {
 		}
 	}
 	fmt.Println("Solution A:", out)
-	return out
+	return strconv.FormatInt(int64(out), 10)
 }
 
-func (d *day5) SolveB(deb bool) interface{} {
+func (d *day5) SolveB(deb bool) string {
 	out := uint(math.MaxInt32)
 	wg := sync.WaitGroup{}
 	mu := sync.Mutex{}
@@ -89,7 +89,7 @@ func (d *day5) SolveB(deb bool) interface{} {
 	}
 
 	fmt.Println("Solution B:", out)
-	return out
+	return strconv.FormatInt(int64(out), 10)
 }
 
 func parseIntervals(inp []string) intervals {

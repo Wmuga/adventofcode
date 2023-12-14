@@ -37,7 +37,7 @@ func TestHor(t *testing.T) {
 func TestB(t *testing.T) {
 	d := New(inp1)
 	res := d.SolveB(true)
-	if res.(int64) != 400 {
+	if res != "400" {
 		t.Error("Wrong B answer. Got", res)
 	}
 }

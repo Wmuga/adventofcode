@@ -56,12 +56,12 @@ func TestParse(t *testing.T) {
 func TestA(t *testing.T) {
 	day := New(inp1)
 	res := day.SolveA(true)
-	if res.(int) != 2 {
+	if res != "2" {
 		t.Error("First input wrong. Expected 2. Got", res)
 	}
 	day = New(inp2)
 	res = day.SolveA(true)
-	if res.(int) != 6 {
+	if res != "6" {
 		t.Error("First input wrong. Expected 6. Got", res)
 	}
 }
@@ -69,7 +69,7 @@ func TestA(t *testing.T) {
 func TestB(t *testing.T) {
 	day := New(inp3)
 	res := day.SolveB(true)
-	if res.(int) != 6 {
+	if res != "6" {
 		t.Error("First input wrong. Expected 6. Got", res)
 	}
 }

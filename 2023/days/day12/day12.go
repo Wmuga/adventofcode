@@ -5,6 +5,7 @@ import (
 	"aoc2023/utils/parsers"
 	"fmt"
 	"regexp"
+	"strconv"
 	"strings"
 	"sync"
 	"sync/atomic"
@@ -94,16 +95,16 @@ func (d *day12) base(dup bool) int64 {
 	return out.Load()
 }
 
-func (d *day12) SolveA(_ bool) interface{} {
+func (d *day12) SolveA(_ bool) string {
 	out := d.base(false)
 	fmt.Println("Solution A:", out)
-	return out
+	return strconv.FormatInt(out, 10)
 }
 
-func (d *day12) SolveB(_ bool) interface{} {
+func (d *day12) SolveB(_ bool) string {
 	out := d.base(true)
 	fmt.Println("Solution B:", out)
-	return out
+	return strconv.FormatInt(out, 10)
 }
 
 func countVariants(line []rune, cond []int, cache map[cacheKey]int64) int64 {

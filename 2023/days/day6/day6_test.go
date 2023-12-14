@@ -23,7 +23,7 @@ func TestParse(t *testing.T) {
 func TestA(t *testing.T) {
 	day := New(inp1)
 	res := day.SolveA(true)
-	if res.(int) != 288 {
+	if res != "288" {
 		t.Error("Result", res, "is not equal to", 288, "\n")
 	}
 }
@@ -31,7 +31,7 @@ func TestA(t *testing.T) {
 func TestB(t *testing.T) {
 	day := New(inp1)
 	res := day.SolveB(true)
-	if res.(int) != 71503 {
+	if res != "71503" {
 		t.Error("Result", res, "is not equal to", 71503, "\n")
 	}
 }

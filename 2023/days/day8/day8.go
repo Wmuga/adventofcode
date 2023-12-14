@@ -4,6 +4,7 @@ import (
 	"aoc2023/days/aocday"
 	"fmt"
 	"regexp"
+	"strconv"
 	"strings"
 )
 
@@ -81,7 +82,7 @@ func move(cur **tree, step rune, b bool) bool {
 	return (*cur).name[2] == 'Z'
 }
 
-func (d *day8) SolveA(_ bool) interface{} {
+func (d *day8) SolveA(_ bool) string {
 	out := 0
 	cur := d.nodes["AAA"]
 	i := 0
@@ -93,9 +94,9 @@ func (d *day8) SolveA(_ bool) interface{} {
 		i %= len(d.steps)
 	}
 	fmt.Println("Solution A:", out)
-	return out
+	return strconv.FormatInt(int64(out), 10)
 }
-func (d *day8) SolveB(_ bool) interface{} {
+func (d *day8) SolveB(_ bool) string {
 	cur := make([]cycleTree, 0)
 	for k, v := range d.nodes {
 		if k[2] == 'A' {
@@ -131,7 +132,7 @@ func (d *day8) SolveB(_ bool) interface{} {
 	for _, v := range cur {
 		if v.pre != v.cycle {
 			fmt.Println("Works only with pre == cycle")
-			return -1
+			return "-1"
 		}
 	}
 
@@ -144,7 +145,7 @@ func (d *day8) SolveB(_ bool) interface{} {
 	}
 
 	fmt.Println("Solution B:", out)
-	return out
+	return strconv.FormatInt(int64(out), 10)
 }
 
 func lcm(a, b int) int {
