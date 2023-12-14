@@ -41,3 +41,12 @@ func GetLinesRune(inp string) [][]rune {
 	}
 	return out
 }
+
+func RunesToString(f [][]rune) string {
+	res := make([]string, len(f))
+	for i, line := range f {
+		res[i] = string(line)
+	}
+
+	return strings.Join(res, "\n")
+}

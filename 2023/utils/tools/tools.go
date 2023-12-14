@@ -1,5 +1,7 @@
 package tools
 
+import "encoding/json"
+
 func Transpose[T any](in [][]T) [][]T {
 	out := make([][]T, len(in[0]))
 	for i := range out {
@@ -11,4 +13,14 @@ func Transpose[T any](in [][]T) [][]T {
 		}
 	}
 	return out
+}
+
+func Clone[T any](a T) (res T, e error) {
+	bytes, err := json.Marshal(a)
+	if err != nil {
+		return res, err
+	}
+	b := new(T)
+	err = json.Unmarshal(bytes, b)
+	return *b, err
 }
