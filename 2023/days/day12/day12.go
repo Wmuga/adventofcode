@@ -40,6 +40,7 @@ func New(inp string) aocday.AoCDay {
 		if line == "" {
 			continue
 		}
+
 		data := strings.Split(line, " ")
 		out.lines = append(out.lines, []rune(data[0]))
 		out.conds = append(out.conds, parsers.ExtractNums(data[1]))

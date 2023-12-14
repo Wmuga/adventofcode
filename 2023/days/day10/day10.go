@@ -4,6 +4,7 @@ import (
 	"aoc2023/days/aocday"
 	"aoc2023/entity/pair"
 	"aoc2023/entity/queue"
+	"aoc2023/utils/parsers"
 	"fmt"
 	"log"
 	"strconv"
@@ -23,13 +24,7 @@ type qData struct {
 }
 
 func New(inp string) aocday.AoCDay {
-	pipes := make([][]rune, 0)
-	for _, line := range strings.Split(inp, "\n") {
-		if len(line) == 0 {
-			continue
-		}
-		pipes = append(pipes, []rune(line))
-	}
+	pipes := parsers.GetLinesRune(inp)
 
 	lengths := make([][]int, len(pipes))
 	for i, v := range pipes {

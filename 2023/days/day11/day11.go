@@ -3,12 +3,12 @@ package day11
 import (
 	"aoc2023/days/aocday"
 	"aoc2023/entity/pair"
+	"aoc2023/utils/parsers"
 	"aoc2023/utils/tools"
 	"fmt"
 	"math"
 	"slices"
 	"strconv"
-	"strings"
 
 	"golang.org/x/exp/maps"
 )
@@ -61,13 +61,7 @@ func (d *day11) parse(inp string, add int64) {
 	d.gals = make(map[coord]struct{})
 	add--
 
-	lines := make([][]rune, 0)
-	for _, line := range strings.Split(inp, "\n") {
-		if len(line) == 0 {
-			continue
-		}
-		lines = append(lines, []rune(line))
-	}
+	lines := parsers.GetLinesRune(inp)
 
 	linesT := tools.Transpose(lines)
 

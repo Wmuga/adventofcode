@@ -2,6 +2,7 @@ package day13
 
 import (
 	"aoc2023/days/aocday"
+	"aoc2023/utils/parsers"
 	"aoc2023/utils/tools"
 	"fmt"
 	"slices"
@@ -23,13 +24,7 @@ func New(inp string) aocday.AoCDay {
 			continue
 		}
 
-		runes := make([][]rune, 0)
-		for _, line := range strings.Split(lines, "\n") {
-			if line == "" {
-				continue
-			}
-			runes = append(runes, []rune(line))
-		}
+		runes := parsers.GetLinesRune(lines)
 
 		out.patterns = append(out.patterns, runes)
 	}
