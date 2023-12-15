@@ -2,6 +2,7 @@ package day14
 
 import (
 	"aoc2023/utils/parsers"
+	"aoc2023/utils/tester"
 	"reflect"
 	"testing"
 )
@@ -53,9 +54,7 @@ const c3 = `.....#....
 func TestA(t *testing.T) {
 	d := New(inp1)
 	res := d.SolveA(true)
-	if res != "136" {
-		t.Error("Wrong A answer. Got", res)
-	}
+	tester.Assert(0, "A", res, "136", t)
 }
 
 func TestCycle(t *testing.T) {
@@ -77,7 +76,5 @@ func TestCycle(t *testing.T) {
 func TestB(t *testing.T) {
 	d := New(inp1)
 	res := d.SolveB(true)
-	if res != "64" {
-		t.Error("Wrong A answer. Got", res)
-	}
+	tester.Assert(0, "B", res, "64", t)
 }

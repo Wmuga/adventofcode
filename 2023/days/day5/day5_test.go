@@ -1,6 +1,7 @@
 package day5
 
 import (
+	"aoc2023/utils/tester"
 	"reflect"
 	"testing"
 )
@@ -66,16 +67,10 @@ func TestParse(t *testing.T) {
 
 func TestA(t *testing.T) {
 	day := New(inp1)
-	res := day.SolveA(true)
-	if res != "35" {
-		t.Error("Result", res, "is not equal to", 35, "\n")
-	}
+	tester.Assert(0, "A", day.SolveA(true), "35", t)
 }
 
 func TestB(t *testing.T) {
 	day := New(inp1)
-	res := day.SolveB(true)
-	if res != "46" {
-		t.Error("Result", res, "is not equal to", 46, "\n")
-	}
+	tester.Assert(0, "B", day.SolveB(true), "46", t)
 }

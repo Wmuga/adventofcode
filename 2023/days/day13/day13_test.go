@@ -1,6 +1,9 @@
 package day13
 
-import "testing"
+import (
+	"aoc2023/utils/tester"
+	"testing"
+)
 
 const inp1 = `#.##..##.
 ..#.##.#.
@@ -36,8 +39,5 @@ func TestHor(t *testing.T) {
 
 func TestB(t *testing.T) {
 	d := New(inp1)
-	res := d.SolveB(true)
-	if res != "400" {
-		t.Error("Wrong B answer. Got", res)
-	}
+	tester.Assert(0, "B", d.SolveB(true), "400", t)
 }

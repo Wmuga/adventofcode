@@ -1,6 +1,7 @@
 package day10
 
 import (
+	"aoc2023/utils/tester"
 	"strconv"
 	"testing"
 )
@@ -62,15 +63,11 @@ L7JLJL-JLJLJL--JLJ.L`
 func TestA(t *testing.T) {
 	day := New(inp1)
 	res := day.SolveA(true)
-	if res != "4" {
-		t.Error("Input 1: Expected 4. Got", res)
-	}
+	tester.Assert(1, "A", res, "4", t)
 
 	day = New(inp2)
 	res = day.SolveA(true)
-	if res != "8" {
-		t.Error("Input 2: Expected 8. Got", res)
-	}
+	tester.Assert(2, "A", res, "8", t)
 }
 
 func TestB(t *testing.T) {
@@ -82,9 +79,8 @@ func TestB(t *testing.T) {
 
 		day := New(inp)
 		res := day.SolveB(true)
-		if res != strconv.FormatInt(int64(exp), 10) {
-			t.Error(i, "input wrong. Expected", exp, "Got", res)
-		}
+
+		tester.Assert(i, "B", res, strconv.FormatInt(int64(exp), 10), t)
 	}
 }
 

@@ -1,6 +1,7 @@
 package day11
 
 import (
+	"aoc2023/utils/tester"
 	"reflect"
 	"testing"
 
@@ -43,10 +44,7 @@ func TestAll(t *testing.T) {
 	adds := []int64{2, 10, 100}
 	ress := []int64{374, 1030, 8410}
 	for i := range adds {
-		res := day.base(adds[i])
-		if res != ress[i] {
-			t.Error(i, "Input wrong. Expected", ress[i], "Got", res)
-		}
+		tester.Assert(i, "All", day.base(adds[i]), ress[i], t)
 	}
 
 }

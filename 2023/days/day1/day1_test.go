@@ -1,6 +1,9 @@
 package day1
 
-import "testing"
+import (
+	"aoc2023/utils/tester"
+	"testing"
+)
 
 const inp1 = `1abc2
 pqr3stu8vwx
@@ -16,17 +19,11 @@ zoneight234
 7pqrstsixteen`
 
 func TestA(t *testing.T) {
-	d := New(inp1)
-	res := d.SolveA(true)
-	if res != "142" {
-		t.Error("Wrong A solution. Got ", res)
-	}
+	day := New(inp1)
+	tester.Assert(0, "A", day.SolveA(true), "142", t)
 }
 
 func TestB(t *testing.T) {
-	d := New(inp2)
-	res := d.SolveB(true)
-	if res != "281" {
-		t.Error("Wrong B solution. Got ", res)
-	}
+	day := New(inp2)
+	tester.Assert(0, "B", day.SolveB(true), "281", t)
 }
