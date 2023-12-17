@@ -21,5 +21,5 @@ func TestA(t *testing.T) {
 }
 
 func TestB(t *testing.T) {
-	tester.Assert(0, "A", New(inp1).SolveB(true), "51", t)
+	tester.Assert(0, "B", New(inp1).SolveB(true), "51", t)
 }
