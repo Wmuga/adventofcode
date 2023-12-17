@@ -83,10 +83,8 @@ func (pq *heapMemory) Pop() interface{} {
 func (pq *heapMemory) shrinkIfNeeded() (*internalSlice, int) {
 	l, c := len(pq.slice), cap(pq.slice)
 	if cap(pq.slice) > pq.ShrinkMinCap && c/l > pq.ShrinkCapLenFactorCondition {
-		newSlice := make(internalSlice, pq.ShrinkNewSizeFactor*l, pq.ShrinkNewSizeFactor*l)
-		for i, v := range pq.slice {
-			newSlice[i] = v
-		}
+		newSlice := make(internalSlice, pq.ShrinkNewSizeFactor*l)
+		copy(newSlice, pq.slice)
 		return &newSlice, l
 	}
 	return &pq.slice, l
