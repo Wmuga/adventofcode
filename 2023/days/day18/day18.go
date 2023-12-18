@@ -5,8 +5,6 @@ import (
 	"aoc2023/entity/pair"
 	"aoc2023/utils/parsers"
 	"fmt"
-	"math"
-	"slices"
 	"strconv"
 	"strings"
 )
@@ -86,87 +84,6 @@ func (d *day18) dig() int64 {
 	inner += int64(verts[len(verts)-1].X * verts[0].Y)
 	inner -= int64(verts[0].X * verts[len(verts)-1].Y)
 	return inner/2 + outer/2 + 1
-}
-
-func dist(a, b coord) int64 {
-	x := float64(a.X - b.X)
-	y := float64(a.Y - b.Y)
-	return int64(math.Sqrt(x*x + y*y))
-}
-
-func angle(cur, center coord) float64 {
-	out := math.Atan(float64(cur.Y-center.Y)/float64(-cur.X+center.X)) + math.Pi*2
-	if out > math.Pi*2 {
-		out -= math.Pi * 2
-	}
-	return out
-}
-
-func (d *day18) digOld() int64 {
-	// get boundaries
-	start, end := getBoundaries(d)
-	// dig site
-	field := map[int][]int{}
-	cur := coord{0, 0}
-	field[0] = make([]int, 1)
-	field[0][0] = 0
-	// dig by instructions
-	for _, ins := range d.instrs {
-		for i := 0; i < ins.steps; i++ {
-			switch ins.dir {
-			case 'R':
-				cur.X++
-			case 'L':
-				cur.X--
-			case 'U':
-				cur.Y--
-			case 'D':
-				cur.Y++
-			}
-			if _, ex := field[cur.Y]; !ex {
-				field[cur.Y] = make([]int, 0, 1)
-			}
-			field[cur.Y] = append(field[cur.Y], cur.X)
-		}
-	}
-
-	return count(field, start, end)
-}
-
-func count(field map[int][]int, start, end coord) int64 {
-	out := int64(0)
-	hole := false
-
-	for _, v := range field {
-		slices.Sort(v)
-
-		i := 0
-		for i < len(v) {
-			if i == len(v)-1 {
-				out++
-				break
-			}
-
-			diff := v[i+1] - v[i]
-			if diff == 1 {
-				out++
-				i++
-				continue
-			}
-
-			if hole {
-				hole = false
-				i++
-			}
-
-			out += int64(diff)
-			hole = true
-			i++
-		}
-
-	}
-
-	return out
 }
 
 func getBoundaries(d *day18) (coord, coord) {
