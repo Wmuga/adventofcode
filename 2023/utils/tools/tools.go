@@ -24,3 +24,17 @@ func Clone[T any](a T) (res T, e error) {
 	err = json.Unmarshal(bytes, b)
 	return *b, err
 }
+
+func Max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
+func Min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
