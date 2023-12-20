@@ -38,3 +38,21 @@ func Min(a, b int) int {
 	}
 	return b
 }
+
+func LCM(a, b int64) int64 {
+	if a == 0 || b == 0 {
+		return 0
+	}
+	return a / GCD(a, b) * b
+}
+
+func GCD(a, b int64) int64 {
+	for a != 0 && b != 0 {
+		if a > b {
+			a = a % b
+			continue
+		}
+		b = b % a
+	}
+	return a + b
+}

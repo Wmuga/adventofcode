@@ -2,6 +2,7 @@ package day8
 
 import (
 	"aoc2023/days/aocday"
+	"aoc2023/utils/tools"
 	"fmt"
 	"regexp"
 	"strconv"
@@ -141,24 +142,9 @@ func (d *day8) SolveB(_ bool) string {
 		if i == 0 {
 			continue
 		}
-		out = lcm(out, v.cycle)
+		out = int(tools.LCM(int64(out), int64(v.cycle)))
 	}
 
 	fmt.Println("Solution B:", out)
 	return strconv.FormatInt(int64(out), 10)
-}
-
-func lcm(a, b int) int {
-	return a / nod(a, b) * b
-}
-
-func nod(a, b int) int {
-	for a != 0 && b != 0 {
-		if a > b {
-			a = a % b
-			continue
-		}
-		b = b % a
-	}
-	return a + b
 }
