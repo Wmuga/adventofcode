@@ -22,6 +22,19 @@ func ExtractNums(inp string) []int {
 	return out
 }
 
+func ExtractNums64(inp string) []int64 {
+	digs := reg.FindAllString(inp, -1)
+	out := make([]int64, len(digs))
+	for i, v := range digs {
+		num, err := strconv.ParseInt(v, 10, 64)
+		if err != nil {
+			fmt.Println("Can't convert", v, "to number")
+		}
+		out[i] = num
+	}
+	return out
+}
+
 func GetLinesString(inp string) []string {
 	out := make([]string, 0)
 	for _, line := range strings.Split(inp, "\n") {

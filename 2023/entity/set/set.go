@@ -9,6 +9,7 @@ type Set[T comparable] interface {
 	Count() int
 	Values() []T
 	Clear()
+	Clone() Set[T]
 }
 
 type set[T comparable] struct {
@@ -56,4 +57,10 @@ func (s *set[T]) Clear() {
 
 func (s *set[T]) Values() []T {
 	return maps.Keys(s.m)
+}
+
+func (s *set[T]) Clone() Set[T] {
+	return &set[T]{
+		m: maps.Clone(s.m),
+	}
 }
